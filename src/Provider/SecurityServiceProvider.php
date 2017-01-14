@@ -18,6 +18,8 @@ class SecurityServiceProvider implements ServiceProviderInterface
      */
     public function register(Application $app)
     {
+        $app->register(new SilexSecurityServiceProvider());
+
         $app['security.firewalls'] = $app->share(
             function ($app) {
                 $boltPath = $app['config']->get('general/branding/path');
@@ -57,8 +59,6 @@ class SecurityServiceProvider implements ServiceProviderInterface
                 ];
             }
         );
-
-        $app->register(new SilexSecurityServiceProvider());
     }
 
     /**
